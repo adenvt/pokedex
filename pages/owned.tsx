@@ -9,6 +9,7 @@ import { FilterNavbar } from '../components/layout/navbar'
 import { PokemonListItem } from '../components/pages/pokemons'
 import { ClientOnly } from '../components/utils/ClientOnly'
 import { useModal } from '../composition/use-modal'
+import { toast } from 'react-toastify'
 
 const MyPokemons: NextPage = () => {
   const { list,
@@ -32,6 +33,8 @@ const MyPokemons: NextPage = () => {
     if (!deleteItem)
       return
 
+    toast.success(`${deleteItem.nickname} (${deleteItem.name}) releasing successfully`)
+
     removePokemon(deleteItem, deleteItem?.nickname)
     setDeleteItem(undefined)
     deleteModal.hide()
@@ -47,7 +50,7 @@ const MyPokemons: NextPage = () => {
         <FilterNavbar />
       </div>
 
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
         <ClientOnly>
           {list.length === 0 && (
             <Card className="flex items-center justify-center w-full h-48 col-span-2">

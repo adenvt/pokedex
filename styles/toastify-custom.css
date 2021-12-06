@@ -1,0 +1,19 @@
+:root {
+  --toastify-color-light: #969E7B;
+  --toastify-color-info: #3D4130;
+  --toastify-color-success: #3D4130;
+  --toastify-text-color-light: #3D4130;
+  --toastify-font-family: VT323, monospace;
+}
+
+.Toastify__close-button--light {
+  color: #3D4130;
+  opacity: 0.75;
+}
+
+.Toastify__toast {
+  border-radius: 0;
+  border-color: #3D4130;
+  border-width: 2px 2px 2px 4px;
+  box-shadow: 4px 4px 0 0 rgb(61 65 48 / 50%);
+}

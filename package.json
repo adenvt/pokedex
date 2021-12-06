@@ -22,6 +22,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-font-loader": "^2.0.0",
+    "react-toastify": "^8.1.0",
     "react-use": "^17.3.1",
     "sharp": "^0.29.3"
   },

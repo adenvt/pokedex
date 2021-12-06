@@ -56,66 +56,66 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({ detail, owned, ...proper
         </h2>
       </div>
 
-      <Card className="mt-3">
-        <dl className="grid grid-cols-2 gap-3 p-3 capitalize">
-          <div>
-            <dt className="text-sm underline">weight</dt>
-            <dd className="text-lg">{detail.weight ?? '-'}</dd>
-          </div>
-          <div>
-            <dt className="text-sm underline">type</dt>
-            <dd className="flex flex-wrap gap-1">
-              {detail.types.map((item, index) => {
-                return (
-                  <Badge key={index}>
-                    {item.type.name}
-                  </Badge>
-                )
-              })}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-sm underline">height</dt>
-            <dd className="text-lg">{detail.height}</dd>
-          </div>
-          <div>
-            <dt className="text-sm underline">abilities</dt>
-            <dd className="text-sm">
-              <ul className="list-disc">
-                {detail.abilities.map((item, index) => {
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <Card>
+          <dl className="grid grid-cols-2 gap-3 p-3 capitalize">
+            <div>
+              <dt className="text-sm underline">weight</dt>
+              <dd className="text-lg">{detail.weight ?? '-'}</dd>
+            </div>
+            <div>
+              <dt className="text-sm underline">type</dt>
+              <dd className="flex flex-wrap gap-1">
+                {detail.types.map((item, index) => {
                   return (
-                    <li key={index}>
-                      {item.ability.name}
-                    </li>
+                    <Badge key={index}>
+                      {item.type.name}
+                    </Badge>
                   )
                 })}
-              </ul>
-            </dd>
-          </div>
-        </dl>
-      </Card>
-
-      <Card className="grid grid-cols-2 gap-3 p-3 mt-3 border-2 sm:grid-cols-2">
-        {detail.stats.map((item, index) => {
-          return (
-            <div key={index}>
-              <div className="flex justify-between gap-2 capitalize">
-                <span className="truncate">
-                  {item.stat.name}
-                </span>
-                <span className="flex-shrink-0">
-                  {item.base_stat}/100
-                </span>
-              </div>
-
-              <ProgressBar
-                value={item.base_stat}
-                maxValue={100}
-                step={10} />
+              </dd>
             </div>
-          )
-        })}
-      </Card>
+            <div>
+              <dt className="text-sm underline">height</dt>
+              <dd className="text-lg">{detail.height}</dd>
+            </div>
+            <div>
+              <dt className="text-sm underline">abilities</dt>
+              <dd className="text-sm">
+                <ul className="list-disc">
+                  {detail.abilities.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        {item.ability.name}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </Card>
+        <Card className="grid grid-cols-2 gap-3 p-3 border-2 sm:grid-cols-2">
+          {detail.stats.map((item, index) => {
+            return (
+              <div key={index}>
+                <div className="flex justify-between gap-2 capitalize">
+                  <span className="truncate">
+                    {item.stat.name}
+                  </span>
+                  <span className="flex-shrink-0">
+                    {item.base_stat}/100
+                  </span>
+                </div>
+                <ProgressBar
+                  value={item.base_stat}
+                  maxValue={100}
+                  step={10} />
+              </div>
+            )
+          })}
+        </Card>
+      </div>
     </div>
   )
 }
@@ -204,11 +204,15 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
       onFinish(isSuccess)
   }
 
-  useMount(() => {
+  function start () {
     seqPokeball.start()
     seqPokemon.reset()
 
     setSucess(Math.random() > 0.5)
+  }
+
+  useMount(() => {
+    start()
   })
 
   return (
@@ -254,10 +258,19 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
             }
           </h3>
 
-          <Button className={classNames('mt-3', isFinished ? 'visible' : 'invisible')}
-            onClick={closeModal}>
-            Ok
-          </Button>
+          <div className={classNames('mt-3 flex gap-3 justify-center', isFinished ? 'visible' : 'invisible')}>
+            <Button
+              onClick={closeModal}>
+              {isSuccess ? 'Next' : 'Close'}
+            </Button>
+
+            {(isFinished && !isSuccess) && (
+              <Button
+                onClick={start}>
+                Try Again
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </Modal>

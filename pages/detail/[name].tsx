@@ -7,6 +7,7 @@ import { usePokemonDetail } from '../../api/pokemon'
 import { useMyPokemons } from '../../api/my-pokemon'
 import { useModal } from '../../composition/use-modal'
 import { Modal } from '../../components/base/modal'
+import { toast } from 'react-toastify'
 
 const DetailPage: NextPage = () => {
   const router = useRouter()
@@ -41,6 +42,8 @@ const DetailPage: NextPage = () => {
       addPokemon(detail, value)
 
       nicknameModal.hide()
+      toast.success(`${nickname} (${detail.name}) is successfully added into your collection`)
+
       router.push('/owned')
     } catch (error) {
       if (error instanceof Error)

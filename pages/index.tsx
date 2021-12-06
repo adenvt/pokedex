@@ -35,7 +35,7 @@ const PokemonList: NextPage = () => {
         <FilterNavbar />
       </div>
 
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
         {loading && [...Array.from({ length: 8 })].map((_, index) => {
           return (
             <PokemonListItemsLoading
