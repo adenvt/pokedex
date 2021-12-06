@@ -15,15 +15,20 @@ export function useSequence (queue: string[]) {
     setIndex((value) => value + 1)
   }
 
-  function previous () {
+  function prev () {
     setIndex((value) => value - 1)
+  }
+
+  function reset () {
+    setIndex(-1)
   }
 
   return {
     index,
     next,
-    prev: previous,
+    prev,
     start,
     current,
+    reset,
   }
 }

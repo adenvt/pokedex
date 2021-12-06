@@ -8,6 +8,7 @@ interface BarProps {
 export const Bar: FC<BarProps> = ({ active }) => {
   return (
     <span
+      data-testid="bar"
       data-active={active}
       className={
         classNames('flex-grow h-4', [active ? 'bg-retro-800' : 'bg-retro-600'])
@@ -28,7 +29,9 @@ export const ProgressBar: FC<ProgressBarProps> = (properties) => {
   const value    = Math.floor(properties.value / maxvalue * step)
 
   return (
-    <div className={classNames('flex justify-between flex-auto gap-1', properties.className)}>
+    <div
+      data-testid="progress-bar"
+      className={classNames('flex justify-between flex-auto gap-1', properties.className)}>
       {[...new Array(step)].map((_, index) => (
         <Bar
           key={index}

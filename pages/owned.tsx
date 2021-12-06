@@ -6,7 +6,7 @@ import { Button } from '../components/base/button'
 import { Card } from '../components/base/card'
 import { Modal } from '../components/base/modal'
 import { FilterNavbar } from '../components/layout/navbar'
-import { PokemonListItems } from '../components/pages/pokemons'
+import { PokemonListItem } from '../components/pages/pokemons'
 import { ClientOnly } from '../components/utils/ClientOnly'
 import { useModal } from '../composition/use-modal'
 
@@ -62,7 +62,7 @@ const MyPokemons: NextPage = () => {
                   href={`/detail/${encodeURIComponent(item.name)}`}
                   passHref>
                   <a>
-                    <PokemonListItems
+                    <PokemonListItem
                       data={item}
                       nickname={item.nickname} />
                   </a>

@@ -17,7 +17,7 @@ export function usePagination (page = 1, perPage = 8, total = 0) {
     return page < totalPage
   }, [page, totalPage])
 
-  const canPrevious = useMemo(() => {
+  const canPrev = useMemo(() => {
     return page > 1
   }, [page])
 
@@ -25,7 +25,7 @@ export function usePagination (page = 1, perPage = 8, total = 0) {
     offset,
     limit,
     totalPage,
-    canPrev: canPrevious,
+    canPrev,
     canNext,
   }
 }

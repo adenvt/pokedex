@@ -1,18 +1,18 @@
 import classNames from 'classnames'
 import { FC } from 'react'
-import { PokemonListItem } from '../../api/pokemons'
+import { PokemonListItem as Data } from '../../api/pokemons'
 import { createRect } from '../../utils/image'
 import { Card } from '../base/card'
 import { ImagePixelated } from '../base/image'
 
 interface PokemonListItemProps {
   className?: string;
-  data: PokemonListItem;
+  data: Data;
   owned?: number;
   nickname?: string;
 }
 
-export const PokemonListItems: FC<PokemonListItemProps> = (properties) => {
+export const PokemonListItem: FC<PokemonListItemProps> = (properties) => {
   const isColored = Boolean((properties.nickname) || (properties.owned && properties.owned > 0))
 
   return (
@@ -45,14 +45,14 @@ export const PokemonListItems: FC<PokemonListItemProps> = (properties) => {
 }
 
 export const PokemonListItemsLoading: FC = () => {
-  const dummyData: PokemonListItem = {
+  const dummyData: Data = {
     name : 'Loading...',
     id   : 0,
     image: createRect(160),
   }
 
   return (
-    <PokemonListItems
+    <PokemonListItem
       className="font-loading animate-pulse"
       data={dummyData} />
   )

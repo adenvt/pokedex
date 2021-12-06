@@ -11,8 +11,11 @@ interface ImgPixelatedProps {
 
 export const ImagePixelated: FC<ImgPixelatedProps> = (properties) => {
   return (
-    <div className="flex items-center justify-center w-full">
+    <div
+      data-testid="image-wrapper"
+      className="flex items-center justify-center w-full">
       <Image
+        data-testid="image"
         alt="Sprite Image"
         src={properties.src}
         width={properties.size ?? 160}

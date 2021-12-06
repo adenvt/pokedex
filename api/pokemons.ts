@@ -67,7 +67,7 @@ export function usePokemonList (initialPage = 1, perPage = 8) {
     setPage((value) => value + 1)
   }
 
-  function previousPage () {
+  function prevPage () {
     setPage((value) => value - 1)
   }
 
@@ -84,7 +84,7 @@ export function usePokemonList (initialPage = 1, perPage = 8) {
     page,
     totalPage,
     nextPage,
-    prevPage: previousPage,
+    prevPage,
     canPrev,
     canNext,
   }

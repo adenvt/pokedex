@@ -4,7 +4,7 @@ import { useMount } from 'react-use'
 import { useMyPokemons } from '../api/my-pokemon'
 import { usePokemonList } from '../api/pokemons'
 import { Button } from '../components/base/button'
-import { PokemonListItems, PokemonListItemsLoading } from '../components/pages/pokemons'
+import { PokemonListItem, PokemonListItemsLoading } from '../components/pages/pokemons'
 import classNames from 'classnames'
 import { FilterNavbar } from '../components/layout/navbar'
 
@@ -50,7 +50,7 @@ const PokemonList: NextPage = () => {
               href={`/detail/${encodeURIComponent(item.name)}`}
               passHref>
               <a>
-                <PokemonListItems
+                <PokemonListItem
                   data={item}
                   owned={findOwnedById(item.id)} />
               </a>

@@ -32,8 +32,11 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({ detail, owned, ...proper
   }
 
   return (
-    <div className={classNames(properties.className)}>
-      <div className="cursor-pointer" onClick={() => togleImage()}>
+    <div
+      data-testid="pokemon-detail"
+      className={classNames(properties.className)}>
+      <div
+        className="cursor-pointer" onClick={() => togleImage()}>
         <ImagePixelated
           src={source}
           size={320}
@@ -49,11 +52,11 @@ export const PokemonDetail: FC<PokemonDetailProps> = ({ detail, owned, ...proper
           {detail.name}
         </h1>
         <h2 className="text-xl">
-          #{String(detail.id).padStart(3, '0')}
+          #{String(detail.id).padStart(4, '0')}
         </h2>
       </div>
 
-      <Card className="mt-3" title="Information">
+      <Card className="mt-3">
         <dl className="grid grid-cols-2 gap-3 p-3 capitalize">
           <div>
             <dt className="text-sm underline">weight</dt>
@@ -203,6 +206,7 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
 
   useMount(() => {
     seqPokeball.start()
+    seqPokemon.reset()
 
     setSucess(Math.random() > 0.5)
   })
