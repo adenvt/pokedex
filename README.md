@@ -3,7 +3,10 @@
 > Retro style Pokédex website, built with React and Next js
 
 ## Demo
-http://pokedex-adenvt.vercel.app/
+|            | URL                               |
+|------------|-----------------------------------|
+| **Origin** | http://pokedex-adenvt.vercel.app/ |
+| **CDN**    | http://pokedex.adenov.id/         |
 
 ## Running on Local
 - First clone this repositories, and go to the directory.
