@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-export function usePagination (page = 1, perPage = 8, total = 0) {
+export function usePagination (page: number, perPage: number, total: number) {
   const limit = useMemo(() => {
     return perPage
   }, [perPage])

@@ -6,7 +6,7 @@ import { render } from '@testing-library/react'
 import { ProgressBar, Bar } from './progress-bar'
 
 describe('ProgressBar', () => {
-  it('Can render properly', async () => {
+  it('Should be render properly', async () => {
     const {
       getByTestId,
       getAllByTestId,

@@ -6,7 +6,7 @@ import { render } from '@testing-library/react'
 import { Badge } from './badge'
 
 describe('Badge', () => {
-  it('Can render properly', () => {
+  it('Should be render properly', () => {
     const { getByTestId } = render(<Badge>ini badge</Badge>)
     const badge           = getByTestId('badge')
 

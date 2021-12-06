@@ -7,7 +7,7 @@ import { createRect } from '../../utils/image'
 import { ImagePixelated } from './image'
 
 describe('ImagePixelated', () => {
-  it('Can render properly', async () => {
+  it('Should be render properly', async () => {
     const srcImage        = createRect(160)
     const { getByTestId } = render(<ImagePixelated src={srcImage} />)
     const image           = getByTestId('image')

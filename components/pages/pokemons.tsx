@@ -16,31 +16,34 @@ export const PokemonListItem: FC<PokemonListItemProps> = (properties) => {
   const isColored = Boolean((properties.nickname) || (properties.owned && properties.owned > 0))
 
   return (
-    <Card className={classNames(properties.className)}>
-      <ImagePixelated
-        src={properties.data.image}
-        colored={isColored} />
-
-      <div className="px-2">
-        <div className="text-lg capitalize">
-          {properties.data.name}
-        </div>
-        <div className="flex justify-between text-sm">
-          <span>
-            #{String(properties.data.id).padStart(4, '0')}
-          </span>
-          {properties.nickname ? (
+    <div
+      data-testid="pokemon-list-item"
+      className={classNames(properties.className)}>
+      <Card>
+        <ImagePixelated
+          src={properties.data.image}
+          colored={isColored} />
+        <div className="px-2">
+          <div className="text-lg capitalize">
+            {properties.data.name}
+          </div>
+          <div className="flex justify-between text-sm">
             <span>
-              { properties.nickname }
+              #{String(properties.data.id).padStart(4, '0')}
             </span>
-          ) : (
-            <span>
-              owned: {properties.owned ?? 0}
-            </span>
-          )}
+            {properties.nickname ? (
+              <span>
+                { properties.nickname }
+              </span>
+            ) : (
+              <span>
+                owned: {properties.owned ?? 0}
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  coverageReporters : ['json', 'html', 'lcov'],
+  coverageReporters : ['json', 'html', 'lcov', 'text'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper  : {
     // Handle module aliases (this will be automatically configured for you soon)

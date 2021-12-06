@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react'
 import { Modal } from './modal'
 
 describe('Modal', () => {
-  it('Can render properly', async () => {
+  it('Should be render properly', async () => {
     const { getByTestId } = render(<Modal>ini modal</Modal>)
     const modal           = getByTestId('modal')
 

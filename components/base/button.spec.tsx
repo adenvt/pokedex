@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react'
 import { Button } from './button'
 
 describe('Button', () => {
-  it('Can render properly', () => {
+  it('Should be render properly', () => {
     const { getByTestId } = render(<Button>ini button</Button>)
     const button          = getByTestId('button')
 
@@ -14,7 +14,7 @@ describe('Button', () => {
     expect(button).toHaveTextContent('ini button')
   })
 
-  it('Can handle onClick', () => {
+  it('Should be handle onClick', () => {
     const onClick         = jest.fn()
     const { getByTestId } = render(<Button onClick={onClick}>ini button</Button>)
     const button          = getByTestId('button')
@@ -24,7 +24,7 @@ describe('Button', () => {
     expect(onClick).toBeCalled()
   })
 
-  it('has attribute disabled if set true', () => {
+  it('Should be have attribute disabled if set true', () => {
     const { getByTestId } = render(<Button disabled>ini button</Button>)
     const button          = getByTestId('button')
 

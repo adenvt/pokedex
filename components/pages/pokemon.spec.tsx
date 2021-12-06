@@ -3,7 +3,7 @@
  */
 
 import { render, fireEvent } from '@testing-library/react'
-import { PokemonDetail } from './pokemon'
+import { PokemonDetail, PokemonDetailLoading } from './pokemon'
 import { createRect } from '../../utils/image'
 import { PokemonDetail as Detail } from '../../api/pokemon'
 
@@ -40,7 +40,7 @@ describe('PokemonDetail', () => {
     },
   }
 
-  it('Can render properly', async () => {
+  it('Should be render properly', async () => {
     const { getByText, getByTestId } = render(<PokemonDetail detail={data} />)
     const image                      = getByTestId('image')
 
@@ -73,11 +73,21 @@ describe('PokemonDetail', () => {
     expect(image).toHaveAttribute('src', imageA)
   })
 
-  it('Should be have colored image if pokemon already owner (owned > 0)', () => {
+  it('Should be have colored image if pokemon already owned (owned > 0)', () => {
     const { getByTestId } = render(<PokemonDetail detail={data} owned={1} />)
     const image           = getByTestId('image')
 
     expect(image).toBeInTheDocument()
     expect(image).not.toHaveClass('saturate-0', 'contrast-200', 'opacity-60')
+  })
+})
+
+describe('PokemonDetailLoading', () => {
+  it('Should be render properly and has loading class', () => {
+    const { getByTestId } = render(<PokemonDetailLoading />)
+    const item            = getByTestId('pokemon-detail')
+
+    expect(item).toBeInTheDocument()
+    expect(item).toHaveClass('font-loading', 'animate-pulse')
   })
 })
