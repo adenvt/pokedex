@@ -53,7 +53,7 @@ const MyPokemons: NextPage = () => {
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
         <ClientOnly>
           {list.length === 0 && (
-            <Card className="flex items-center justify-center w-full h-48 col-span-2">
+            <Card className="flex items-center justify-center w-full h-48 col-span-2 lg:h-72 md:col-span-4">
               {"- You haven't catch any pokemon yet -"}
             </Card>
           )}
