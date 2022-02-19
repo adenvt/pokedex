@@ -31,6 +31,8 @@ yarn dev
 - Typescript
 - Apollo GraphQL
 - Jest + React Testing Library
+
 ## LICENSE
 
-MIT Licence
+This Project was originally used for Tokopedia Software Engineer - Web Platform Pretest Submission.
+USING IT FOR SAME PURPOSE WITHOUT MAJOR CHANGES IS PROHIBITED. Otherthan that, this project following: MIT Licence
