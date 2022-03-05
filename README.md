@@ -35,4 +35,5 @@ yarn dev
 ## LICENSE
 
 This Project was originally used for Tokopedia Software Engineer - Web Platform Pretest Submission.
-USING IT FOR SAME PURPOSE WITHOUT MAJOR CHANGES IS PROHIBITED. Otherthan that, this project following: MIT Licence
+
+USING IT FOR SAME PURPOSE WITHOUT MAJOR CHANGES IS PROHIBITED. Otherwise, it following: MIT Licence
