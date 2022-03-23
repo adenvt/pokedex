@@ -3,7 +3,7 @@ import { usePagination } from './use-pagination'
 
 describe('use-pagination', () => {
   describe('counting limit and offset', () => {
-    const cases = [
+    const cases: Array<[number, number, number, number]> = [
       [ 1, 5,  0, 5],
       [ 2, 5,  5, 5],
       [10, 5, 45, 5],
@@ -18,7 +18,7 @@ describe('use-pagination', () => {
   })
 
   describe('couting totalPage based on perPage', () => {
-    const cases = [
+    const cases: Array<[number, number]> = [
       [10, 10],
       [25,  4],
       [30,  4],
@@ -33,28 +33,28 @@ describe('use-pagination', () => {
   })
 
   describe('canNext', () => {
-    const cases = [
+    const cases: Array<[number, boolean]> = [
       [ 1,   true],
       [ 3,   true],
       [ 10, false],
     ]
 
     it.each(cases)('%s/10, canNext should be %s', (page, canNext) => {
-      const { result } = renderHook(() => usePagination(Number(page), 10, 100))
+      const { result } = renderHook(() => usePagination(page, 10, 100))
 
       expect(result.current.canNext).toBe(canNext)
     })
   })
 
   describe('canPrev', () => {
-    const cases = [
+    const cases: Array<[number, boolean]> = [
       [ 1,  false],
       [ 3,   true],
       [ 10,  true],
     ]
 
     it.each(cases)('%s/10, canPrev should be %s', (page, canPrev) => {
-      const { result } = renderHook(() => usePagination(Number(page), 10, 100))
+      const { result } = renderHook(() => usePagination(page, 10, 100))
 
       expect(result.current.canPrev).toBe(canPrev)
     })

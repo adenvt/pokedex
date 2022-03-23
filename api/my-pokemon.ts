@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLocalStorage } from 'react-use'
+import { useLocalStorage, useMount } from 'react-use'
 import { usePagination } from '../composition/use-pagination'
 import { PokemonDetail } from './pokemon'
 import type { PokemonListItem } from './pokemons'
@@ -27,8 +27,9 @@ function toPokemonListItem (data: PokemonDetail | PokemonListItem): PokemonListI
 }
 
 export function useMyPokemons (initialPage = 1, perPage = 8) {
-  const [page, setPage]   = useState(initialPage)
-  const [value, setValue] = useLocalStorage<MyPokemons>('my-pokemon', {})
+  const [loading, setLoading] = useState(false)
+  const [page, setPage]       = useState(initialPage)
+  const [value, setValue]     = useLocalStorage<MyPokemons>('my-pokemon', {})
 
   const collections = useMemo<MyPokemon[]>(() => {
     if (!value)
@@ -45,7 +46,8 @@ export function useMyPokemons (initialPage = 1, perPage = 8) {
     offset,
     canNext,
     canPrev,
-    totalPage } = usePagination(page, perPage, total)
+    totalPage,
+  } = usePagination(page, perPage, total)
 
   const list = useMemo(() => {
     return collections.slice(offset, offset + limit)
@@ -100,7 +102,12 @@ export function useMyPokemons (initialPage = 1, perPage = 8) {
     })
   }
 
+  useMount(() => {
+    setLoading(false)
+  })
+
   return {
+    loading,
     list,
     findById,
     findOwnedById,

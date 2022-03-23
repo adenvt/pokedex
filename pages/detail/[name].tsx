@@ -57,8 +57,8 @@ const DetailPage: NextPage = () => {
         &lt; Back
       </button>
 
-      {loading
-        && <PokemonDetailLoading />
+      {loading &&
+        <PokemonDetailLoading />
       }
 
       {!loading && detail && (

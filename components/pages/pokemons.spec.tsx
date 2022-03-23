@@ -35,10 +35,11 @@ describe('PokemonListItem', () => {
   })
 
   it('Should be shown nickname instead of owned count, if nickname provided', () => {
-    const { queryByText } = render(<PokemonListItem data={data} nickname="Tarjono" />)
+    const nickname        = 'Tarjono'
+    const { queryByText } = render(<PokemonListItem data={data} nickname={nickname} />)
 
-    expect(queryByText('Tarjono')).toBeVisible()
-    expect(queryByText('owned :')).toBe(null)
+    expect(queryByText(nickname)).toBeVisible()
+    expect(queryByText('owned :')).not.toBeInTheDocument()
   })
 
   it('Should be have colored image if nickname provided', () => {
