@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { FC, useMemo, useState } from 'react'
+import { FC, useMemo, useRef, useState } from 'react'
 import { PokemonDetail as Detail } from '../../api/pokemon'
 import { createRect } from '../../utils/image'
 import { Badge } from '../base/badge'
@@ -7,10 +7,9 @@ import { Card } from '../base/card'
 import { ImagePixelated } from '../base/image'
 import { Modal } from '../base/modal'
 import { ProgressBar } from '../base/progress-bar'
-import animation from '../../styles/animation.module.css'
-import { useMount } from 'react-use'
-import { useSequence } from '../../composition/use-sequence'
+import anime from 'animejs'
 import { Button } from '../base/button'
+import { useMount } from 'react-use'
 
 interface PokemonDetailProps {
   className?: string;
@@ -175,73 +174,99 @@ interface PokemonCatchProps {
 }
 
 export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
-  const [isSuccess, setSucess] = useState(false)
+  const [isSuccess, setSucess]    = useState(false)
+  const [isFinished, setFinished] = useState(false)
 
-  const seqPokeball = useSequence([
-    'pokeballThrown',
-    'pokeballShake',
-    'pokeballFinish',
-  ])
+  const pokemon   = useRef<HTMLDivElement | null>(null)
+  const pokeball  = useRef<HTMLDivElement | null>(null)
 
-  const seqPokemon = useSequence([
-    'pokemonDisappear',
-    'pokemonHide',
-    'pokemonEscape',
-  ])
+  useMount(() => {
+    start()
+  })
 
-  const isFinished = useMemo(() => {
-    if (isSuccess && seqPokemon.current === 'pokemonEscape')
-      return true
+  function start() {
+    setFinished(false)
 
-    if (!isSuccess && seqPokeball.current === 'pokeballFinish')
-      return true
+    const isCathed = Math.random() > 0.5
+    const timeline = anime.timeline({ autoplay: false })
 
-    return false
-  }, [isSuccess, seqPokeball, seqPokemon])
+    timeline
+      .add({
+        targets  : pokemon.current,
+        keyframes: [
+          { opacity: 1, scale: 1, filter: 'brightness(1) blur(0px)' },
+        ],
+        duration: 25,
+      })
+      .add({
+        targets  : pokeball.current,
+        keyframes: [
+          { scale: 2, translateY: '0%' },
+          { scale: 0.75, translateY: '-15%' },
+          { scale: 0.5, translateY: '45%' },
+        ],
+        duration : 820,
+        direction: 'normal',
+        easing   : 'linear'
+      }, -50)
+      .add({
+        targets  : pokemon.current,
+        keyframes: [
+          { opacity: 1, scale: 1, filter: 'brightness(25) blur(0px)' },
+          { opacity: 0, scale: 0, filter: 'brightness(200) blur(10px)' },
+        ],
+        duration: 820,
+        delay   : 50,
+        easing  : 'linear'
+      })
+      .add({
+        targets   : pokeball.current,
+        translateX: ['-2%', '4%', '-4%', '4%', '0%'],
+        duration  : 1640,
+        delay     : 50,
+        direction : 'alternate',
+        easing    : 'easeOutInSine',
+      })
+
+    if (isCathed === false) {
+      timeline
+        .add({
+          targets  : pokemon.current,
+          keyframes: [
+            { opacity: 0, scale: 0, filter: 'brightness(200) blur(10px)' },
+            { opacity: 1, scale: 1, filter: 'brightness(1) blur(0px)' },
+          ],
+          duration: 820,
+          delay   : 50,
+          easing  : 'linear'
+        })
+    }
+
+    timeline.play()
+    timeline.finished.then(() => {
+      setSucess(isCathed)
+      setFinished(true)
+    })
+  }
 
   function closeModal () {
     if (typeof onFinish === 'function')
       onFinish(isSuccess)
   }
 
-  function start () {
-    seqPokeball.start()
-    seqPokemon.reset()
-
-    setSucess(Math.random() > 0.5)
-  }
-
-  useMount(() => {
-    start()
-  })
-
   return (
     <Modal>
       <div className="relative">
-        <div className={
-            seqPokemon.current === 'pokemonDisappear' ? animation.pokemonDisappear
-            : seqPokemon.current === 'pokemonHide' ? 'invisible'
-            : seqPokemon.current === 'pokemonEscape' && isSuccess ? 'invisible'
-            : seqPokemon.current === 'pokemonEscape' && !isSuccess ? animation.pokemonEscape
-            : ''
-          }
-          onAnimationEnd={() => {
-            seqPokemon.next()
-            seqPokeball.next()
-          }}
-        >
+        <div
+          className="origin-bottom pointer-events-none"
+          ref={pokemon}>
           <ImagePixelated
             data-id="pokemon"
             src={detail.sprites.front_default} />
         </div>
         <div
-          className={
-              seqPokeball.current === 'pokeballThrown' ? animation.pokeballThrown
-              : seqPokeball.current === 'pokeballShake' ? animation.pokeballShake
-              : seqPokeball.current === 'pokeballFinish' && !isSuccess ? animation.pokeballHide
-              : animation.pokeball
-            }
-          onAnimationEnd={() => seqPokemon.next()}>
+          className="absolute top-0 bottom-0 left-0 right-0 pointer-events-none"
+          ref={pokeball}>
           <ImagePixelated
             data-id="pokeball"
             src={require('../../assets/image/poke-ball.png')}
@@ -258,11 +283,13 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
             }
           </h3>
 
+
           <div className={classNames('mt-3 flex gap-3 justify-center', isFinished ? 'visible' : 'invisible')}>
             <Button
               onClick={closeModal}>
               {isSuccess ? 'Next' : 'Close'}
             </Button>
+
 
             {(isFinished && !isSuccess) && (
               <Button
