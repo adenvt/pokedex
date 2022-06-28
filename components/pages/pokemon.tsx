@@ -192,40 +192,36 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
 
     timeline
       .add({
-        targets  : pokemon.current,
-        keyframes: [
-          { opacity: 1, scale: 1, filter: 'brightness(1) blur(0px)' },
-        ],
-        duration: 25,
+        targets : [pokemon.current, pokeball.current],
+        opacity : [0, 1],
+        scale   : [0, 1],
+        filter  : ['brightness(200) blur(10px)', 'brightness(1) blur(0px)'],
+        duration: 50,
       })
       .add({
-        targets  : pokeball.current,
-        keyframes: [
-          { scale: 2, translateY: '0%' },
-          { scale: 0.75, translateY: '-15%' },
-          { scale: 0.5, translateY: '45%' },
-        ],
-        duration : 820,
-        direction: 'normal',
-        easing   : 'linear'
-      }, -50)
+        targets   : pokeball.current,
+        scale     : [2, 0.75, 0.5],
+        translateY: ['0%', '-15%', '45%'],
+        duration  : 820,
+        direction : 'normal',
+        easing    : 'linear'
+      }, '-=50')
       .add({
-        targets  : pokemon.current,
-        keyframes: [
-          { opacity: 1, scale: 1, filter: 'brightness(25) blur(0px)' },
-          { opacity: 0, scale: 0, filter: 'brightness(200) blur(10px)' },
-        ],
+        targets : pokemon.current,
+        opacity : [1, 0],
+        scale   : [1, 0],
+        filter  : ['brightness(50) blur(0px)', 'brightness(200) blur(10px)'],
         duration: 820,
         delay   : 50,
         easing  : 'linear'
       })
       .add({
-        targets   : pokeball.current,
-        translateX: ['-2%', '4%', '-4%', '4%', '0%'],
-        duration  : 1640,
-        delay     : 50,
-        direction : 'alternate',
-        easing    : 'easeOutInSine',
+        targets  : pokeball.current,
+        rotate   : ['15deg', '-15deg', '15deg', '-15deg', '0deg'],
+        duration : 1640,
+        delay    : 50,
+        direction: 'alternate',
+        easing   : 'easeOutInSine',
       })
 
     if (isCathed === false) {
@@ -240,6 +236,15 @@ export const PokemonCatch: FC<PokemonCatchProps> = ({ detail, onFinish }) => {
           delay   : 50,
           easing  : 'linear'
         })
+        .add({
+          targets : pokeball.current,
+          keyframes: [
+            { opacity: 1, scale: 0.5, filter: 'brightness(1) blur(0px)' },
+            { opacity: 0, scale: 0, filter: 'brightness(200) blur(10px)' },
+          ],
+          duration: 50,
+          easing  : 'linear'
+        }, '-=50')
     }
 
     timeline.play()
