@@ -809,10 +809,10 @@
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-1.1.2.tgz"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@types/animejs@3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@types/animejs/-/animejs-3.1.4.tgz#92f90d1c800b9041b64a7da9da0e68e690146b0e"
-  integrity sha512-WUjeFT2SXd6intfE6cg6eL1jk/JL88JqM2gC4WqO4iHLmbCvHUq6aoLK13lGpDWs4FtS2PHoYraJZ0dEx99Dyg==
+"@types/animejs@3.1.6":
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/@types/animejs/-/animejs-3.1.6.tgz#cdcb8bcfd0c0d1642c8951973b8d6ea6d578908c"
+  integrity sha512-jYlEdbVTOOLBz1mauqhrigFUFAGde2KCdO/99asxHpF+5zOdz/VjNKbnpNa0oNBhsDNFzmMvvE+V4C8ZkvJdKg==
 
 "@types/aria-query@^4.2.0":
   version "4.2.2"
