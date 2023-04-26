@@ -1155,10 +1155,10 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-16.11.11.tgz"
   integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
 
-"@types/node@16.11.26":
-  version "16.11.26"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.26.tgz"
-  integrity sha512-GZ7bu5A6+4DtG7q9GsoHXy3ALcgeIHP4NnL0Vv2wu0uUB/yQex26v0tf6/na1mm0+bS9Uw+0DFex7aaKr2qawQ==
+"@types/node@16.18.25":
+  version "16.18.25"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.25.tgz#8863940fefa1234d3fcac7a4b7a48a6c992d67af"
+  integrity sha512-rUDO6s9Q/El1R1I21HG4qw/LstTHCPO/oQNAwI/4b2f9EWvMnqt4d3HJwPMawfZ3UvodB8516Yg+VAq54YM+eA==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
